@@ -2,6 +2,9 @@ import React, {useState, useEffect} from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
+// import componnents
+import Loading from "../components/Loading";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -37,8 +40,8 @@ const Login = () => {
         credentials: "include"
       });
       const result = await response.json();
+      setIsLoading(false);
       if(result.message){
-        setIsLoading(false);
         toast.success(result.message);
         navigate("/home");
       }else if(result.errorMessage){
@@ -47,6 +50,7 @@ const Login = () => {
         toast.error("Something goes wrong")
       }
     }catch(err){
+      setIsLoading(false);
       console.log(err);
     }
   }
@@ -55,29 +59,7 @@ const Login = () => {
         <div class="container vh-100">
     <div class="row justify-content-center h-100">
       <div class="col-md-4 col-sm-8 d-flex align-items-center justify-content-center flex-column">
-      {isLoading?<div>
-      <div class="spinner-grow text-primary" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-      <div class="spinner-grow text-secondary" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-      <div class="spinner-grow text-success" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-      <div class="spinner-grow text-danger" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-      <div class="spinner-grow text-warning" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-      <div class="spinner-grow text-info" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-      <div class="spinner-grow text-dark" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-    </div>:<><div class="card shadow-sm w-100">
+      {isLoading?<Loading />:<><div class="card shadow-sm w-100">
           <div class="card-body">
             <h5 className="text-center fw-bold">Todo List</h5>
             <h3 class="text-center mb-4">Login</h3>

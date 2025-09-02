@@ -3,6 +3,9 @@ import { NavLink } from "react-router-dom";
 import {toast} from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
+// import components
+import Loading from "../components/Loading";
+
 const Register = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -10,11 +13,13 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isAgreed, setIsAgreed] = useState(false);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const collectData = async(e) => {
     e.preventDefault();
-
+    setIsLoading(true);
     try{
       const response = await fetch(`https://mern-todo-list-backend-u2xt.onrender.com/register`, {
         method: "POST",
@@ -22,6 +27,7 @@ const Register = () => {
         body: JSON.stringify({fullName, email, password, confirmPassword, isAgreed}),
       });
       const result = await response.json();
+      setIsLoading(false);
       if(result.message){
         toast.success(result.message);
         navigate("/login")
@@ -32,11 +38,13 @@ const Register = () => {
       }
 
     }catch(err){
+      setIsLoading(false);
       console.log(err);
     }
   } 
 
     return(
+      isLoading?<Loading />:
         <>
         <div class="container vh-100">
     <div class="row justify-content-center h-100">
