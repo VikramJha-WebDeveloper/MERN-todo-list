@@ -26,7 +26,7 @@ const Navbar = () => {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
   useEffect(()=>{
-    fetch(`https://mern-todo-list-backend-fhkl.onrender.com/me`, {
+    fetch(`https://mern-todo-list-backend-u2xt.onrender.com/me`, {
       method: "GET",
       credentials: "include",
     }).then((response)=>{
@@ -38,7 +38,7 @@ const Navbar = () => {
   });
 
   const logout = () => {
-    fetch(`https://mern-todo-list-backend-fhkl.onrender.com/logout`, {
+    fetch(`https://mern-todo-list-backend-u2xt.onrender.com/logout`, {
       method: "GET",
       credentials: "include",
     }).then((response)=>{

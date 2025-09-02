@@ -15,7 +15,7 @@ const Home = () => {
   const navigate = useNavigate();
   useEffect(() => {
     setIsLoading(true);
-        fetch(`https://mern-todo-list-backend-fhkl.onrender.com/me`, {
+        fetch(`https://mern-todo-list-backend-u2xt.onrender.com/me`, {
       method: "GET",
       credentials: "include",
     })

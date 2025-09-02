@@ -11,7 +11,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(()=>{
-      fetch("https://mern-todo-list-backend-fhkl.onrender.com/me", {
+      fetch("https://mern-todo-list-backend-u2xt.onrender.com/me", {
       method: "GET",
       credentials: "include",
     }).then((response)=>{
@@ -30,7 +30,7 @@ const Login = () => {
     e.preventDefault();
     setIsLoading(true);
       try{
-      const response = await fetch(`https://mern-todo-list-backend-fhkl.onrender.com/login`, {
+      const response = await fetch(`https://mern-todo-list-backend-u2xt.onrender.com/login`, {
         method: "POST",
         headers: {"Content-Type":"application/json"},
         body: JSON.stringify({email, password, isRemembered}),

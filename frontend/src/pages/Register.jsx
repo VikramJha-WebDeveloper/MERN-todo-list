@@ -16,7 +16,7 @@ const Register = () => {
     e.preventDefault();
 
     try{
-      const response = await fetch(`https://mern-todo-list-backend-fhkl.onrender.com/register`, {
+      const response = await fetch(`https://mern-todo-list-backend-u2xt.onrender.com/register`, {
         method: "POST",
         headers: {"Content-Type":"application/json"},
         body: JSON.stringify({fullName, email, password, confirmPassword, isAgreed}),

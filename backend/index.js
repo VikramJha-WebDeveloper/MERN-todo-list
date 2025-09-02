@@ -9,7 +9,7 @@ const bcrypt = require("bcryptjs");
 const app = express();
 app.use(express.json());
 app.use(cors({
-    origin: "https://mern-todo-list-eobj.onrender.com",
+    origin: "https://mern-todo-list-frontend-2a8o.onrender.com",
     credentials: true
 }));
 app.use(cookieParser());

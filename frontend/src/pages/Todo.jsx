@@ -43,7 +43,7 @@ const Todo = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`https://mern-todo-list-backend-fhkl.onrender.com/me`, {
+    fetch(`https://mern-todo-list-backend-u2xt.onrender.com/me`, {
       method: "GET",
       credentials: "include",
     })
@@ -57,7 +57,7 @@ const Todo = () => {
         console.log(data);
         setUser(data);
 
-        fetch(`https://mern-todo-list-backend-fhkl.onrender.com/showItems`, {
+        fetch(`https://mern-todo-list-backend-u2xt.onrender.com/showItems`, {
           method: "GET",
           credentials: "include",
         })
@@ -75,7 +75,7 @@ const Todo = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`https://mern-todo-list-backend-fhkl.onrender.com/addItem`, {
+      const response = await fetch(`https://mern-todo-list-backend-u2xt.onrender.com/addItem`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({ itemName, itemQuantity }),
@@ -113,7 +113,7 @@ const Todo = () => {
   const deleteItem = async (item) => {
     console.log(item);
     try {
-      const response = await fetch(`https://mern-todo-list-backend-fhkl.onrender.com/deleteItem`, {
+      const response = await fetch(`https://mern-todo-list-backend-u2xt.onrender.com/deleteItem`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(item),
@@ -147,7 +147,7 @@ const Todo = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`https://mern-todo-list-backend-fhkl.onrender.com/editItem`, {
+      const response = await fetch(`https://mern-todo-list-backend-u2xt.onrender.com/editItem`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ itemName, itemQuantity, itemToEdit }),
@@ -172,7 +172,7 @@ const Todo = () => {
 
   const updateCompletionStatus = async (item, e) => {
     try {
-      const response = await fetch(`https://mern-todo-list-backend-fhkl.onrender.com/updateComplete`, {
+      const response = await fetch(`https://mern-todo-list-backend-u2xt.onrender.com/updateComplete`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(item),
