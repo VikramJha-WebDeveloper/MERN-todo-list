@@ -12,6 +12,7 @@ import EditModal from "../modals/EditModal";
 
 // import images
 import EmptyClipboard from "/empty-clipboard.png";
+import Loading from "../components/Loading";
 
 const TodoSection = styled.div`
   background-image: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
@@ -39,10 +40,13 @@ const Todo = () => {
   const [itemToEdit, setItemToEdit] = useState("");
   const [displayEditBox, setDisplayEditBox] = useState("none");
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const [items, setItems] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
+    setIsLoading(true);
     fetch(`https://mern-todo-list-backend-u2xt.onrender.com/me`, {
       method: "GET",
       credentials: "include",
@@ -65,6 +69,11 @@ const Todo = () => {
             return response.json();
           })
           .then((data) => {
+            setIsLoading(false);
+            if(data.errorMessage){
+              toast.error(data.errorMessage);
+              return;
+            }
             console.log("showItems", data);
             setItems(data.items);
           });
@@ -240,7 +249,7 @@ const Todo = () => {
             <div className="card mt-3 items-card">
               <div className="card-body">
                 <table className="table text-center">
-                  {items.length === 0 ? (
+                  {isLoading?<Loading />:<>{items.length === 0 ? (
                     <div>
                       <div className="display-6 text-secondary">
                         Start by adding your first task!
@@ -295,7 +304,8 @@ const Todo = () => {
                         ))}
                       </tbody>
                     </>
-                  )}
+                  )}</>}
+                  
                 </table>
               </div>
             </div>

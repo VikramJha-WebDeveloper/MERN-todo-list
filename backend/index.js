@@ -226,10 +226,13 @@ app.get("/me", verifyToken, async(req, res)=>{
 app.get("/showItems", verifyToken, async(req, res)=>{
     try{
         const items = await ItemModel.find({user_id: req.user.user_id});
-    res.status(200).json({items});
+        if(items){
+            return res.status(200).json({items});
+        };
+        res.status(400).json({errorMessage: "Something goes wrong showing items"})
     }catch(err){
         console.log("Internal server error");
-        res.status(500).json({errorMessage: "Internal server error"});
+        res.status(500).json({errorMessage: "Internal server error on Showing items"});
     }
 })
 
