@@ -15,7 +15,7 @@ app.use(cors({
 app.use(cookieParser());
 
 const port = process.env.PORT || 8000;
-const database_url = "mongodb+srv://jhavikram11121998:71450468Aa@cluster0.9gyzl3x.mongodb.net/market-todo-list?retryWrites=true&w=majority&appName=Cluster0";
+const database_url = process.env.DATABASE_URL;
 const secret_key = process.env.SECRET_KEY;
 
 const connectToDatabase = async() => {
